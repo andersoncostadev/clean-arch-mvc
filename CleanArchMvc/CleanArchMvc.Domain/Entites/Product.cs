@@ -22,7 +22,7 @@ namespace CleanArchMvc.Domain.Entites
         public int Stock { get; private set; }
         public string Image { get; private set; }
 
-        public int  CatgoryId { get; set; }
+        public int  CategoryId { get; set; }
         public Category Category { get; set; }
 
         private void validateDomain(string name, string description, decimal price, int stock, string image)
@@ -51,7 +51,7 @@ namespace CleanArchMvc.Domain.Entites
         public void UpdateProduct(string name, string description, decimal price, int stock, string image, int categoryId)
         {
             validateDomain(name, description, price, stock, image);
-            CatgoryId = categoryId;
+            CategoryId = categoryId;
         }
     }
 }
