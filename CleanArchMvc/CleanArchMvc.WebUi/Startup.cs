@@ -1,4 +1,5 @@
-﻿using CleanArchMvc.Infra.IoC;
+﻿using CleanArchMvc.Domain.Account;
+using CleanArchMvc.Infra.IoC;
 namespace WebApplication1
 {
     public class Startup
@@ -16,7 +17,7 @@ namespace WebApplication1
             services.AddControllersWithViews();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISeedUserRoleInitial seedUserRoleInitial)
         {
             if (env.IsDevelopment())
             {
@@ -32,6 +33,10 @@ namespace WebApplication1
 
             app.UseRouting();
 
+            seedUserRoleInitial.SeedRoles();
+            seedUserRoleInitial.SeedUsers();
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
